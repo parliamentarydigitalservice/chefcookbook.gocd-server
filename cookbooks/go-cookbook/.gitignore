@@ -1,0 +1,14 @@
+
+# No need to keep my local .vagrant diretory around
+.vagrant/
+
+# Berkshelf's lock file contains local pathes when running vagrant
+Berksfile.lock
+
+.kitchen/
+.kitchen.local.yml
+
+.bundle
+# installed with `bundle install --binstubs`
+bin/
+
