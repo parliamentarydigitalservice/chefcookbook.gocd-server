@@ -21,3 +21,8 @@ end
 gocd_plugin 'slack-notifier' do
   plugin_uri 'https://github.com/ashwanthkumar/gocd-slack-build-notifier/releases/download/v1.1.2/gocd-slack-notifier-1.1.2.jar'
 end
+
+# Install Git onto the server.
+apt_package 'git' do
+  action :instal
+end
