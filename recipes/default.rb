@@ -24,5 +24,5 @@ end
 
 # Install Git onto the server.
 apt_package 'git' do
-  action :instal
+  action :install
 end
