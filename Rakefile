@@ -25,5 +25,10 @@ namespace :integration do
   end
 end
 
-# Default
+task :upload_to_chef do
+  sh 'berks install; berks upload'
+end
+
 task default: ['test', 'integration:vagrant']
+task ci: ['test', 'upload_to_chef']
+task cloud: ['test', 'integration:amazon', 'upload_to_chef']
