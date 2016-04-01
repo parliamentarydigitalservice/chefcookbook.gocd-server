@@ -26,7 +26,8 @@ namespace :integration do
 end
 
 task :upload_to_chef do
-  sh 'berks install; berks upload'
+  sh 'berks install'
+  sh 'berks upload'
 end
 
 task default: ['test', 'integration:vagrant']
