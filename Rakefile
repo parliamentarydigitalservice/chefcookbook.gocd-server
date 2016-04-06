@@ -41,7 +41,15 @@ task :upload_to_chef do
   sh 'berks install; berks upload'
 end
 
-# Possible list of 'top level' commands to be executed 
+task :packer, :source_ami_id do |_, args|
+  puts args[:source_ami_id]
+  sh 'rm -rf berks-cookbooks/*'
+  sh 'berks vendor'
+  sh 'packer validate template.json'
+  sh "packer build -var 'source_ami=#{args.source_ami_id}' template.json"
+end
+
+# Possible list of 'top level' commands to be executed
 task default: ['test', 'integration:vagrant']
 task ci: ['test', 'upload_to_chef']
 task cloud: ['test', 'integration:amazon', 'upload_to_chef']

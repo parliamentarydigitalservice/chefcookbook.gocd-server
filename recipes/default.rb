@@ -5,7 +5,7 @@
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 # Install and configure the server.
-include_recipe 'gocd::server'
+include_recipe 'gocd::server_linux_install'
 
 # Install the nuget poller.
 gocd_plugin 'go-nuget-poller' do
