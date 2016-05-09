@@ -6,7 +6,7 @@
     "name":              "gocd-server",
     "region":            "eu-west-1",
     "source_ami":        "ami-9abea4fb",
-    "instance_type":     "t2.micro",
+    "instance_type":     "t2.medium",
     "ssh_username":      "ubuntu"
   },
   "builders": [

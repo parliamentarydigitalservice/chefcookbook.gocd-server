@@ -8,3 +8,6 @@ base_ami_id=$(aws ec2 describe-images --filters Name=tag-key,Values=name Name=ta
 
 ## Build an AMI for this cookbook
 $(which chef) exec rake packer[$base_ami_id]
+
+# Encrypt it
+aws ec2 copy-image --source-region $(aws configure get region) -s $(cat ami-id) -n "GoCD-Server-Encrypted" --encrypted
