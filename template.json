@@ -4,7 +4,7 @@
     "aws_access_key":    "{{env `AWS_ACCESS_KEY`}}",
     "aws_secret_key":    "{{env `AWS_SECRET_KEY`}}",
     "name":              "gocd-server",
-    "region":            "eu-west-1",
+    "region":            "{{env `AWS_REGION`}}",
     "source_ami":        "ami-9abea4fb",
     "instance_type":     "t2.medium",
     "ssh_username":      "ubuntu"
