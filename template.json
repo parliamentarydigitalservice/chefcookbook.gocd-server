@@ -3,8 +3,8 @@
     "version":           "{{env `VERSION`}}",
     "aws_access_key":    "{{env `AWS_ACCESS_KEY`}}",
     "aws_secret_key":    "{{env `AWS_SECRET_KEY`}}",
-    "name":              "gocd-server",
-    "region":            "eu-west-1",
+    "name":              "gocd_server-ubuntu-16.04",
+    "region":            "{{env `AWS_REGION`}}",
     "source_ami":        "ami-9abea4fb",
     "instance_type":     "t2.medium",
     "ssh_username":      "ubuntu"
@@ -20,10 +20,13 @@
       "ssh_username":    "ubuntu",
       "ssh_private_ip":  "false",
       "user_data_file":  "{{user `user_data_file`}}",
-      "ami_name":        "{{user `name`}} {{timestamp}}",
+      "ami_name":        "{{user `name`}}-{{timestamp}}",
       "ami_description": "{{user `name`}} AMI",
       "run_tags": { "ami-create": "{{user `name`}}" },
-      "tags": { "name": "{{user `name`}}", "created": "{{timestamp}}" },
+      "tags": {
+        "Name": "{{user `name`}}",
+        "Created": "{{timestamp}}"
+      },
       "associate_public_ip_address": true
     }
   ],
