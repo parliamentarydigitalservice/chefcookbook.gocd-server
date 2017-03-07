@@ -18,3 +18,11 @@ $(which chef) exec rake packer[$base_ami_id]
 
 # Encrypt it
 # aws ec2 copy-image --source-region $(aws configure get region) -s $(cat ami-id) -n "GoCD-Server-Encrypted" --encrypted
+
+declare -a GRANTS=(378030785168 638960451485 165162103257 337667769842 430811725848 210277190260)
+AMI_ID=$(cat ami-id)
+
+for g in ${GRANTS[@]}; do
+    echo Granting launch permission for $AMI_ID to $g
+    aws ec2 modify-image-attribute --image-id $AMI_ID --launch-permission "{\"Add\": [{\"UserId\":\"$g\"}]}"
+done
