@@ -25,4 +25,8 @@ AMI_ID=$(cat ami-id)
 for g in ${GRANTS[@]}; do
     echo Granting launch permission for $AMI_ID to $g
     aws ec2 modify-image-attribute --image-id $AMI_ID --launch-permission "{\"Add\": [{\"UserId\":\"$g\"}]}"
+    for snap in $(aws ec2 describe-images --image-ids $AMI_ID | jq -r '.Images[].BlockDeviceMappings[].Ebs.SnapshotId | select(.)'); do
+        echo Granting create volume permission for $snap to $g
+        aws ec2 modify-snapshot-attribute --snapshot-id $snap --create-volume-permission "{\"Add\": [{\"UserId\":\"$g\"}]}"
+    done
 done
